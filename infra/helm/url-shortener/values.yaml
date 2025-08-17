@@ -1,0 +1,12 @@
+api:
+  image:
+    repository: api-image
+    tag: latest
+worker:
+  image:
+    repository: worker-image
+    tag: latest
+postgres:
+  image: postgres:15
+monitoring:
+  enabled: true

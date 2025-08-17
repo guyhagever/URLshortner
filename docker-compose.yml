@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  api:
+    build: ./apps/api
+    ports: ["3000:3000"]
+    env_file: .env
+    depends_on:
+      - postgres
+  worker:
+    build: ./apps/worker
+    ports: ["3001:3001"]
+    env_file: .env
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: urlshort
+    ports: ["5432:5432"]
+  redis:
+    image: redis:7
+    ports: ["6379:6379"]
